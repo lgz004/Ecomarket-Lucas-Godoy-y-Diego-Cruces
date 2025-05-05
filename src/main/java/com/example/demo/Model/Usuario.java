@@ -1,7 +1,6 @@
-package Model;
+package com.example.demo.Model;
 
 public class Usuario {
-
 private String nombre;
 private String email;
 

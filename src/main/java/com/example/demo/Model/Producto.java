@@ -1,4 +1,4 @@
-package Model;
+package com.example.demo.Model;
 
 public class Producto {
     private int idProducto;
