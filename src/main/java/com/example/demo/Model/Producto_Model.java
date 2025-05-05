@@ -1,39 +1,15 @@
 package com.example.demo.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Producto_Model {
     private int idProducto;
     private String nombre;
     private int precio;
 
-    public Producto_Model() {}
-
-    public Producto_Model(int idProducto, String nombre, int precio) {
-        this.idProducto = idProducto;
-        this.nombre = nombre;
-        this.precio = precio;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
 }

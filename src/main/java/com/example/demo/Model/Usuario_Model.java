@@ -1,29 +1,14 @@
 package com.example.demo.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario_Model {
 private String nombre;
 private String email;
 
-    public Usuario_Model() {}
-
-    public Usuario_Model(String nombre, String email) {
-        this.nombre = nombre;
-        this.email = email;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
