@@ -1,12 +1,12 @@
 package com.example.demo.Model;
 
-public class Usuario {
+public class Usuario_Model {
 private String nombre;
 private String email;
 
-    public Usuario() {}
+    public Usuario_Model() {}
 
-    public Usuario(String nombre, String email) {
+    public Usuario_Model(String nombre, String email) {
         this.nombre = nombre;
         this.email = email;
     }

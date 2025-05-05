@@ -1,13 +1,13 @@
 package com.example.demo.Model;
 
-public class Producto {
+public class Producto_Model {
     private int idProducto;
     private String nombre;
     private int precio;
 
-    public Producto() {}
+    public Producto_Model() {}
 
-    public Producto(int idProducto, String nombre, int precio) {
+    public Producto_Model(int idProducto, String nombre, int precio) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;

@@ -1,12 +1,12 @@
 package com.example.demo.Model;
 
-public class GerenteTienda extends Usuario {
+public class GerenteTienda_Model extends Usuario_Model {
     private int idGerente;
     private String tiendaAsignada;
 
-    public GerenteTienda() {}
+    public GerenteTienda_Model() {}
 
-    public GerenteTienda(String nombre, String email, int idGerente, String tiendaAsignada) {
+    public GerenteTienda_Model(String nombre, String email, int idGerente, String tiendaAsignada) {
         super(nombre, email);
         this.idGerente = idGerente;
         this.tiendaAsignada = tiendaAsignada;

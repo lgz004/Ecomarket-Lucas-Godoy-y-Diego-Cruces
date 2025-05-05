@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 
-public class Cliente extends Usuario {
+public class Cliente_Model extends Usuario_Model {
     private String idCliente;
     private String direccionEnvio;
 
