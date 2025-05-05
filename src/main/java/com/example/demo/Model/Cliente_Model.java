@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cliente_Model extends Usuario_Model {
-    private String idCliente;
     private String direccionEnvio;
 
 }
