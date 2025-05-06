@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public class Usuario_Repository {
-    private List<Usuario_Model> usuarios; = new ArrayList<>();
+    private List<Usuario_Model> usuarios = new ArrayList<>();
     public List<Usuario_Model> getUsuarios() {
         return usuarios;
     }
@@ -28,17 +28,23 @@ public class Usuario_Repository {
 
     public Usuario_Model guardarUsuario(Usuario_Model usuario) {
         usuarios.add(usuario);
-        return usuario;
+        return "Agregado con exito";
     }
 
-    public Usuario_Model actualizarUsuario(Usuario_Model usuario) {
-        for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getId() == usuario.getId()) {
-                usuarios.set(i, usuario);
-                return usuario;
+    public Usuario_Model actualizarUsuario(int id, Usuario_Model usuario) {
+        int index = 0;
+        for (Usuario_Model temp : usuarios) {
+            if (temp.getId() == id) {
+                index = usuarios.indexOf(temp);
+                break;
             }
         }
-        return null;
+        if (index != -1) {
+            usuarios.set(index, usuario);
+            return "Actualizado con exito";
+        } else {
+            return "No existe un usuario con ese nombre";
+        }
     }
 
     public void eliminarUsuario(int id) {
@@ -47,6 +53,4 @@ public class Usuario_Repository {
             usuarios.remove(Usuario_model);
         }
     }
-
-
 }
