@@ -13,25 +13,41 @@ public class Usuario_Repository {
         return usuarios;
     }
 
-    public Usuario_Model buscarUsuarioPorId(int id) {
+    public Usuario_Repository() {
+
+    }
+
+    public String obterUsuarios() {
+        String output = "";
+
+        for (Usuario_Model usuario : usuarios) {
+            output+= "Nombre usuario: " + usuario.getNombre() + "\n";
+            output+= "Contraseña: " + usuario.getPassword() + "\n";
+            output+= "Correo: " + usuario.getEmail() + "\n";
+        }
+        if (usuarios.size() > 0) {
+            return output;
+        }else{
+            return "No se encuentran usuarios";
+        }
+    }
+
+    public String obtenerUsuarioId(int id) {
+
         for (Usuario_Model usuario : usuarios) {
             if (usuario.getId() == id) {
-                return usuario;
+                return usuario.toString();
             }
         }
-        return null;
+        return "No se encuentra usuario con ese nombre";
     }
 
-    public List<Usuario_Model> obterUsuarios() {
-        return usuarios;
-    }
-
-    public Usuario_Model guardarUsuario(Usuario_Model usuario) {
+    public String guardarUsuario(Usuario_Model usuario) {
         usuarios.add(usuario);
-        return "Agregado con exito";
+        return "Usuario agregado con exito";
     }
 
-    public Usuario_Model actualizarUsuario(int id, Usuario_Model usuario) {
+    public String actualizarUsuario(int id, Usuario_Model usuario) {
         int index = 0;
         for (Usuario_Model temp : usuarios) {
             if (temp.getId() == id) {
@@ -47,10 +63,13 @@ public class Usuario_Repository {
         }
     }
 
-    public void eliminarUsuario(int id) {
-        Usuario_Model Usuario_model = buscarUsuarioPorId(id);
-        if (Usuario_model != null) {
-            usuarios.remove(Usuario_model);
+    public String eliminarUsuario(int id) {
+        for (Usuario_Model usuario : usuarios) {
+            if (usuario.getId() == id) {
+                usuarios.remove(usuario);
+                return "Eliminado con exito";
+            }
         }
+        return "No existe un usuario con ese nombre";
     }
 }

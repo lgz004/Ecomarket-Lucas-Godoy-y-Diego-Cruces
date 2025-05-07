@@ -8,33 +8,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/GitHub/Ecomarket-Lucas-Godoy-y-Diego-Cruces")
+@RequestMapping("/usuarios")
 public class Usuario_Controller {
     @Autowired
     private Usuario_Service usuarioService;
 
     @GetMapping
-    public List<Usuario_Model> ListarUsuarios() {
+    public String ListarUsuarios() {
         return usuarioService.getUsuarios();
     }
 
     @PostMapping
-    public Usuario_Model agregarUsuario(@RequestBody Usuario_Model usuario) {
+    public String agregarUsuario(@RequestBody Usuario_Model usuario) {
         return usuarioService.SaveUsuario(usuario);
     }
 
-    @GetMapping("{id}")
-    public Usuario_Model buscarUsuarioPorId(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public String buscarUsuarioPorId(@PathVariable int id) {
         return usuarioService.getUsuario(id);
     }
 
-    @PutMapping("{id}")
-    public Usuario_Model atualizarUsuario(@PathVariable int id, @RequestBody Usuario_Model usuario) {
-        return usuarioService.updateUsuario(usuario);
+    @PutMapping("/{id}")
+    public String atualizarUsuario(@PathVariable int id, @RequestBody Usuario_Model usuario) {
+        return usuarioService.updateUsuario(id, usuario);
     }
 
-    @DeleteMapping("{id}")
-    public void eliminarUsuario(@PathVariable int id) {
-        usuarioService.deleteUsuario(id);
+    @DeleteMapping("/{id}")
+    public String eliminarUsuario(@PathVariable int id) {
+        return usuarioService.deleteUsuario(id);
     }
 }

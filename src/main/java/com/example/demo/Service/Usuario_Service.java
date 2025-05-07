@@ -12,25 +12,24 @@ public class Usuario_Service {
     @Autowired
     private Usuario_Repository Usuario_Repository;
 
-    public List<Usuario_Model> getUsuarios() {
-        return Usuario_Repository.getUsuarios();
+    public String getUsuarios() {
+        return Usuario_Repository.obterUsuarios();
     }
 
-    public Usuario_Model SaveUsuario(Usuario_Model Usuario_Model) {
+    public String SaveUsuario(Usuario_Model Usuario_Model) {
         return Usuario_Repository.guardarUsuario(Usuario_Model);
     }
 
-    public Usuario_Model getUsuario(int id) {
-        return Usuario_Repository.buscarUsuarioPorId(id);
+    public String getUsuario(int id) {
+        return Usuario_Repository.obtenerUsuarioId(id);
     }
 
-    public Usuario_Model updateUsuario(Usuario_Model Usuario_Model) {
-        return Usuario_Repository.actualizarUsuario(Usuario_Model);
+    public String updateUsuario(int id, Usuario_Model Usuario_Model) {
+        return Usuario_Repository.actualizarUsuario(id, Usuario_Model);
     }
 
-    public Usuario_Model deleteUsuario(int id) {
-        Usuario_Repository.eliminarUsuario(id);
-        return "Usuario eliminado";
+    public String deleteUsuario(int id) {
+        return Usuario_Repository.eliminarUsuario(id);
     }
 
 }
