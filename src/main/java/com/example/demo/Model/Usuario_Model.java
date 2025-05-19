@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Usuario_Model {
     @Id
-    @GeneratedValue(Strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
 private String nombre;
 private String email;
