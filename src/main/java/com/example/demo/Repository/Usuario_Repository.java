@@ -70,6 +70,6 @@ public class Usuario_Repository {
                 return "Eliminado con exito";
             }
         }
-        return "No existe un usuario con ese nombre";
+        return "No existe un usuario con ese id";
     }
 }
