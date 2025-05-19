@@ -10,26 +10,61 @@ import java.util.List;
 @Service
 public class Usuario_Service {
     @Autowired
-    private Usuario_Repository Usuario_Repository;
+    private Usuario_Repository usuario_Repository;
 
-    public String getUsuarios() {
-        return Usuario_Repository.obterUsuarios();
+    public String agregar_Usuario(Usuario_Model usuario){
+        usuario_Repository.save(usuario);
+        return "Usuario agregado con exito";
     }
 
-    public String SaveUsuario(Usuario_Model Usuario_Model) {
-        return Usuario_Repository.guardarUsuario(Usuario_Model);
+    public String eliminar_Usuario(int id){
+        if(usuario_Repository.existsById(id)){
+            usuario_Repository.deleteById(id);
+            return "Usuario eliminado con exito";
+        }else {
+            return "Usuario no encontrado";
+        }
     }
 
-    public String getUsuario(int id) {
-        return Usuario_Repository.obtenerUsuarioId(id);
+    public String Listar_Usuarios(){
+        String Output = "";
+        for(Usuario_Model usuario : usuario_Repository.findAll()){
+            Output += "Id: "+usuario.getNombre() + "\n";
+            Output += "Nombre: "+usuario.getNombre() + "\n";
+            Output += "Email: "+usuario.getEmail() + "\n";
+            Output += "Password: "+usuario.getPassword() + "\n";
+        }
+        if (Output.isEmpty()){
+            return "Usuario no encontrado";
+        }else  {
+            return Output;
+        }
     }
 
-    public String updateUsuario(int id, Usuario_Model Usuario_Model) {
-        return Usuario_Repository.actualizarUsuario(id, Usuario_Model);
+    public String obtener_Usuario(int id){
+        String Output = "";
+        if(usuario_Repository.existsById(id)){
+            Usuario_Model usuario = usuario_Repository.findById(id).get();
+            Output += "Id: "+usuario.getNombre() + "\n";
+            Output += "Nombre: "+usuario.getNombre() + "\n";
+            Output += "Email: "+usuario.getEmail() + "\n";
+            Output += "Password: "+usuario.getPassword() + "\n";
+            return Output;
+        }else  {
+            return "Usuario no encontrado";
+        }
     }
 
-    public String deleteUsuario(int id) {
-        return Usuario_Repository.eliminarUsuario(id);
+    public String actualizar_Usuario(int id, Usuario_Model usuario){
+        if(usuario_Repository.existsById(id)){
+            Usuario_Model usuariob = usuario_Repository.findById(id).get();
+            usuario.setNombre(usuariob.getNombre());
+            usuario.setEmail(usuariob.getEmail());
+            usuario.setPassword(usuariob.getPassword());
+            usuario_Repository.save(usuariob);
+            return "Usuario actualizado con exito";
+        }else  {
+            return "Usuario no encontrado";
+        }
     }
-
 }

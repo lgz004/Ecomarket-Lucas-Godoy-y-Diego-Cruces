@@ -8,33 +8,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
+@RequestMapping("/usuarios")
 public class Usuario_Controller {
     @Autowired
-    private Usuario_Service usuarioService;
+    private Usuario_Service usuario_service;
 
     @GetMapping
-    public String ListarUsuarios() {
-        return usuarioService.getUsuarios();
+    public String getUsuarios() {
+        return usuario_service.Listar_Usuarios();
     }
 
     @PostMapping
-    public String agregarUsuario(@RequestBody Usuario_Model usuario) {
-        return usuarioService.SaveUsuario(usuario);
+    public String addUsuario(@RequestBody Usuario_Model usuario) {
+        return usuario_service.agregar_Usuario(usuario);
     }
 
     @GetMapping("/{id}")
-    public String buscarUsuarioPorId(@PathVariable int id) {
-        return usuarioService.getUsuario(id);
-    }
-
-    @PutMapping("/{id}")
-    public String atualizarUsuario(@PathVariable int id, @RequestBody Usuario_Model usuario) {
-        return usuarioService.updateUsuario(id, usuario);
+    public String getUsuarioById(@PathVariable int id) {
+        return usuario_service.obtener_Usuario(id);
     }
 
     @DeleteMapping("/{id}")
     public String eliminarUsuario(@PathVariable int id) {
-        return usuarioService.deleteUsuario(id);
+        return usuario_service.eliminar_Usuario(id);
+    }
+
+    @PutMapping("/{id}")
+    public String editarUsuario(@PathVariable int id, @RequestBody Usuario_Model usuario) {
+        return usuario_service.actualizar_Usuario(id, usuario);
     }
 }
