@@ -29,13 +29,13 @@ public class Usuario_Service {
     public String Listar_Usuarios(){
         String Output = "";
         for(Usuario_Model usuario : usuario_Repository.findAll()){
-            Output += "Id: "+usuario.getNombre() + "\n";
+            Output += "Id: "+usuario.getIdUsuario() + "\n";
             Output += "Nombre: "+usuario.getNombre() + "\n";
             Output += "Email: "+usuario.getEmail() + "\n";
             Output += "Password: "+usuario.getPassword() + "\n";
         }
         if (Output.isEmpty()){
-            return "Usuario no encontrado";
+            return "No hay usuarios";
         }else  {
             return Output;
         }
@@ -45,7 +45,7 @@ public class Usuario_Service {
         String Output = "";
         if(usuario_Repository.existsById(id)){
             Usuario_Model usuario = usuario_Repository.findById(id).get();
-            Output += "Id: "+usuario.getNombre() + "\n";
+            Output += "Id: "+usuario.getIdUsuario() + "\n";
             Output += "Nombre: "+usuario.getNombre() + "\n";
             Output += "Email: "+usuario.getEmail() + "\n";
             Output += "Password: "+usuario.getPassword() + "\n";
