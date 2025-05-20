@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class Usuario_Service {
     @Autowired
-    private Usuario_Repository usuario_Repository;
+    Usuario_Repository usuario_Repository;
 
     public String agregar_Usuario(Usuario_Model usuario){
         usuario_Repository.save(usuario);

@@ -17,7 +17,7 @@ public class Usuario_Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-private int id;
+private int idUsuario;
 private String nombre;
 private String email;
 private String password;

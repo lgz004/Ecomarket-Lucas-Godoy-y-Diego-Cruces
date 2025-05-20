@@ -15,6 +15,10 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Cliente_Model extends Usuario_Model {
 
+    private int idCliente;
+    private String nombre;
+    private String email;
+    private String password;
     private String direccionEnvio;
 
 }
