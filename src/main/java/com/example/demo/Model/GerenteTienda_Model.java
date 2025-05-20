@@ -8,6 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GerenteTienda_Model extends Usuario_Model {
+
+    private int idGerente;
+    private String nombre;
+    private String email;
+    private String password;
     private String tiendaAsignada;
 
 }

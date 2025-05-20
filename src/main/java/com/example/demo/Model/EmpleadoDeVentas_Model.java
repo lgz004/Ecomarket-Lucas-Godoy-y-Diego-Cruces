@@ -9,5 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class EmpleadoDeVentas_Model extends Usuario_Model {
+
+    private int idEmpleado;
+    private String nombre;
+    private String email;
+    private String password;
     private String tienda;
 }
