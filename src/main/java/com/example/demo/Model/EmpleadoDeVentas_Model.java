@@ -1,5 +1,6 @@
 package com.example.demo.Model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,7 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class EmpleadoDeVentas_Model extends Usuario_Model {
+@Entity
+public class EmpleadoDeVentas_Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
