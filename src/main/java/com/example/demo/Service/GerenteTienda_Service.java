@@ -45,7 +45,7 @@ public class GerenteTienda_Service {
         String Output = "";
         if(gerenteTienda_Repository.existsById(id)){
             GerenteTienda_Model gerente = gerenteTienda_Repository.findById(id).get();
-            Output += "Id: "+gerente.getNombre() + "\n";
+            Output += "Id: "+gerente.getIdGerente() + "\n";
             Output += "Nombre: "+gerente.getNombre() + "\n";
             Output += "Email: "+gerente.getEmail() + "\n";
             Output += "Password: "+gerente.getPassword() + "\n";
