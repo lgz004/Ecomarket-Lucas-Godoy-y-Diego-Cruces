@@ -60,9 +60,9 @@ public class EmpleadoDeVentas_Service {
     public String actualizar_EmpleadoDeVentas(int id, EmpleadoDeVentas_Model EmpleadoDeVentas){
         if(empleadoDeVentas_Repository.existsById(id)){
             EmpleadoDeVentas_Model EmpleadoDeVentasB = empleadoDeVentas_Repository.findById(id).get();
-            EmpleadoDeVentas.setNombre(EmpleadoDeVentasB.getNombre());
-            EmpleadoDeVentas.setEmail(EmpleadoDeVentasB.getEmail());
-            EmpleadoDeVentas.setPassword(EmpleadoDeVentasB.getPassword());
+            EmpleadoDeVentasB.setNombre(EmpleadoDeVentas.getNombre());
+            EmpleadoDeVentasB.setEmail(EmpleadoDeVentas.getEmail());
+            EmpleadoDeVentasB.setPassword(EmpleadoDeVentas.getPassword());
             empleadoDeVentas_Repository.save(EmpleadoDeVentasB);
             return "Empleado de ventas actualizado con exito";
         }else  {

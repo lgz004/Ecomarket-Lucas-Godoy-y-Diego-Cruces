@@ -58,11 +58,11 @@ public class AdministradorSistema_Service {
 
     public String actualizar_AdministradorSistema(int id, AdministradorSistema_Model administradorSistema){
         if(administradorSistema_Repository.existsById(id)){
-            AdministradorSistema_Model AdministradorSistemaB = administradorSistema_Repository.findById(id).get();
-            administradorSistema.setNombre(AdministradorSistemaB.getNombre());
-            administradorSistema.setEmail(AdministradorSistemaB.getEmail());
-            administradorSistema.setPassword(AdministradorSistemaB.getPassword());
-            administradorSistema_Repository.save(AdministradorSistemaB);
+            AdministradorSistema_Model administradorSistemaB = administradorSistema_Repository.findById(id).get();
+            administradorSistemaB.setNombre(administradorSistema.getNombre());
+            administradorSistemaB.setEmail(administradorSistema.getEmail());
+            administradorSistemaB.setPassword(administradorSistema.getPassword());
+            administradorSistema_Repository.save(administradorSistemaB);
             return "Administrador de Sistema actualizado con exito";
         }else  {
             return "Administrador de Sistema no encontrado";

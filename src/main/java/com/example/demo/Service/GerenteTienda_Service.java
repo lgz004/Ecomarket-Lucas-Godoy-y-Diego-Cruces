@@ -59,9 +59,9 @@ public class GerenteTienda_Service {
     public String actualizar_Gerente(int id, GerenteTienda_Model gerente){
         if(gerenteTienda_Repository.existsById(id)){
             GerenteTienda_Model gerenteb = gerenteTienda_Repository.findById(id).get();
-            gerente.setNombre(gerenteb.getNombre());
-            gerente.setEmail(gerenteb.getEmail());
-            gerente.setPassword(gerenteb.getPassword());
+            gerenteb.setNombre(gerente.getNombre());
+            gerenteb.setEmail(gerente.getEmail());
+            gerenteb.setPassword(gerente.getPassword());
             gerenteTienda_Repository.save(gerenteb);
             return "Gerente actualizado con exito";
         }else  {

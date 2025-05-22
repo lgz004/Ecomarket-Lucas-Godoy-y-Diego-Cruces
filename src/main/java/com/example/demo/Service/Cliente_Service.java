@@ -59,10 +59,10 @@ public class Cliente_Service {
     public String actualizar_Cliente(int id, Cliente_Model cliente){
         if(cliente_Repository.existsById(id)){
             Cliente_Model clienteb = cliente_Repository.findById(id).get();
-            cliente.setNombre(clienteb.getNombre());
-            cliente.setEmail(clienteb.getEmail());
-            cliente.setPassword(clienteb.getPassword());
-            cliente.setDireccionEnvio(clienteb.getDireccionEnvio());
+            clienteb.setNombre(cliente.getNombre());
+            clienteb.setEmail(cliente.getEmail());
+            clienteb.setPassword(cliente.getPassword());
+            clienteb.setDireccionEnvio(cliente.getDireccionEnvio());
             cliente_Repository.save(clienteb);
             return "Cliente actualizado con exito";
         }else  {

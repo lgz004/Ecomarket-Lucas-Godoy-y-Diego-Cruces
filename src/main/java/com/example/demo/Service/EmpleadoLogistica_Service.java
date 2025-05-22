@@ -59,9 +59,9 @@ public class EmpleadoLogistica_Service {
     public String actualizar_EmpleadoLogistica(int id, EmpleadoLogistica_Model EmpleadoLogistica){
         if(empleadoLogisticaRepository.existsById(id)){
             EmpleadoLogistica_Model EmpleadoLogisticaB = empleadoLogisticaRepository.findById(id).get();
-            EmpleadoLogistica.setNombre(EmpleadoLogisticaB.getNombre());
-            EmpleadoLogistica.setEmail(EmpleadoLogisticaB.getEmail());
-            EmpleadoLogistica.setPassword(EmpleadoLogisticaB.getPassword());
+            EmpleadoLogisticaB.setNombre(EmpleadoLogistica.getNombre());
+            EmpleadoLogisticaB.setEmail(EmpleadoLogistica.getEmail());
+            EmpleadoLogisticaB.setPassword(EmpleadoLogistica.getPassword());
             empleadoLogisticaRepository.save(EmpleadoLogisticaB);
             return "Empleado de Logistica actualizado con exito";
         }else  {

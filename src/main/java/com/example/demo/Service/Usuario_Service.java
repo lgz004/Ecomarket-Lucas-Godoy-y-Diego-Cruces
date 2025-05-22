@@ -58,9 +58,9 @@ public class Usuario_Service {
     public String actualizar_Usuario(int id, Usuario_Model usuario){
         if(usuario_Repository.existsById(id)){
             Usuario_Model usuariob = usuario_Repository.findById(id).get();
-            usuario.setNombre(usuariob.getNombre());
-            usuario.setEmail(usuariob.getEmail());
-            usuario.setPassword(usuariob.getPassword());
+            usuariob.setNombre(usuario.getNombre());
+            usuariob.setEmail(usuario.getEmail());
+            usuariob.setPassword(usuario.getPassword());
             usuario_Repository.save(usuariob);
             return "Usuario actualizado con exito";
         }else  {
