@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Cliente_Model extends Usuario_Model {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
     private String nombre;
     private String email;
