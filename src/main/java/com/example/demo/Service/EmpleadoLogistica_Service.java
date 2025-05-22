@@ -62,6 +62,7 @@ public class EmpleadoLogistica_Service {
             EmpleadoLogisticaB.setNombre(EmpleadoLogistica.getNombre());
             EmpleadoLogisticaB.setEmail(EmpleadoLogistica.getEmail());
             EmpleadoLogisticaB.setPassword(EmpleadoLogistica.getPassword());
+            EmpleadoLogisticaB.setTiendaAsignada(EmpleadoLogistica.getTiendaAsignada());
             empleadoLogisticaRepository.save(EmpleadoLogisticaB);
             return "Empleado de Logistica actualizado con exito";
         }else  {

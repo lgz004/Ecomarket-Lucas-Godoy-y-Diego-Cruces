@@ -62,6 +62,7 @@ public class AdministradorSistema_Service {
             administradorSistemaB.setNombre(administradorSistema.getNombre());
             administradorSistemaB.setEmail(administradorSistema.getEmail());
             administradorSistemaB.setPassword(administradorSistema.getPassword());
+            administradorSistemaB.setTienda(administradorSistema.getTienda());
             administradorSistema_Repository.save(administradorSistemaB);
             return "Administrador de Sistema actualizado con exito";
         }else  {

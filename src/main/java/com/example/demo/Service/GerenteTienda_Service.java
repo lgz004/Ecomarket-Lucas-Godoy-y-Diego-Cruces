@@ -62,6 +62,7 @@ public class GerenteTienda_Service {
             gerenteb.setNombre(gerente.getNombre());
             gerenteb.setEmail(gerente.getEmail());
             gerenteb.setPassword(gerente.getPassword());
+            gerenteb.setTiendaAsignada(gerente.getTiendaAsignada());
             gerenteTienda_Repository.save(gerenteb);
             return "Gerente actualizado con exito";
         }else  {
