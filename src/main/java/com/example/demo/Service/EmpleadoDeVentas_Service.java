@@ -63,6 +63,7 @@ public class EmpleadoDeVentas_Service {
             EmpleadoDeVentasB.setNombre(EmpleadoDeVentas.getNombre());
             EmpleadoDeVentasB.setEmail(EmpleadoDeVentas.getEmail());
             EmpleadoDeVentasB.setPassword(EmpleadoDeVentas.getPassword());
+            EmpleadoDeVentasB.setTienda(EmpleadoDeVentas.getTienda());
             empleadoDeVentas_Repository.save(EmpleadoDeVentasB);
             return "Empleado de ventas actualizado con exito";
         }else  {
