@@ -17,7 +17,7 @@ public class AdministradorSistema_Controller {
     }
 
     @PostMapping
-    public String addAdministradorSistema(AdministradorSistema_Model administradorSistema){
+    public String addAdministradorSistema(@RequestBody AdministradorSistema_Model administradorSistema){
         return administradorSistemaService.agregar_AdministradorSistema(administradorSistema);
     }
 
