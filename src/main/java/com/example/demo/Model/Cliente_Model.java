@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-public class Cliente_Model extends Usuario_Model {
+public class Cliente_Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

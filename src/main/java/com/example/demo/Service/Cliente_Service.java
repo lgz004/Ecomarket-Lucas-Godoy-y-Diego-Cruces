@@ -30,7 +30,7 @@ public class Cliente_Service {
     public String Listar_Clientes(){
         String Output = "";
         for(Cliente_Model cliente : cliente_Repository.findAll()){
-            Output += "Id: "+cliente.getIdUsuario() + "\n";
+            Output += "Id: "+cliente.getIdCliente() + "\n";
             Output += "Nombre: "+cliente.getNombre() + "\n";
             Output += "Email: "+cliente.getEmail() + "\n";
             Output += "Password: "+cliente.getPassword() + "\n";
@@ -47,7 +47,7 @@ public class Cliente_Service {
         String Output = "";
         if(cliente_Repository.existsById(id)){
             Cliente_Model cliente = cliente_Repository.findById(id).get();
-            Output += "Id: "+cliente.getIdUsuario() + "\n";
+            Output += "Id: "+cliente.getIdCliente() + "\n";
             Output += "Nombre: "+cliente.getNombre() + "\n";
             Output += "Email: "+cliente.getEmail() + "\n";
             Output += "Password: "+cliente.getPassword() + "\n";
