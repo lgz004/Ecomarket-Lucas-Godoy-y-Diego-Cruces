@@ -1,7 +1,6 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.GerenteTienda_Model;
-import com.example.demo.Model.Usuario_Model;
 import com.example.demo.Repository.GerenteTienda_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

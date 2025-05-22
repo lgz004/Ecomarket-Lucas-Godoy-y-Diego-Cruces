@@ -1,6 +1,5 @@
 package com.example.demo.Service;
 
-import com.example.demo.Model.EmpleadoDeVentas_Model;
 import com.example.demo.Model.EmpleadoLogistica_Model;
 import com.example.demo.Repository.EmpleadoLogistica_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
