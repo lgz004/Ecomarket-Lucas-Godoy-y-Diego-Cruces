@@ -13,7 +13,7 @@ public class AdministradorSistema_Controller {
 
     @GetMapping
     public String getAdministradoresSistema(){
-        return administradorSistemaService.Listar_AdministradoresSistema();
+        return administradorSistemaService.Listar_AdministradorSistema();
     }
 
     @PostMapping
