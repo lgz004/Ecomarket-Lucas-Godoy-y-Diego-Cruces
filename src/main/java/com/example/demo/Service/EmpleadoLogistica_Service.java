@@ -56,14 +56,14 @@ public class EmpleadoLogistica_Service {
         }
     }
 
-    public String actualizar_EmpleadoLogistica(int id, EmpleadoLogistica_Model EmpleadoLogistica){
+    public String actualizar_EmpleadoLogistica(int id, EmpleadoLogistica_Model empleadoLogistica){
         if(empleadoLogisticaRepository.existsById(id)){
-            EmpleadoLogistica_Model EmpleadoLogisticaB = empleadoLogisticaRepository.findById(id).get();
-            EmpleadoLogisticaB.setNombre(EmpleadoLogistica.getNombre());
-            EmpleadoLogisticaB.setEmail(EmpleadoLogistica.getEmail());
-            EmpleadoLogisticaB.setPassword(EmpleadoLogistica.getPassword());
-            EmpleadoLogisticaB.setTiendaAsignada(EmpleadoLogistica.getTiendaAsignada());
-            empleadoLogisticaRepository.save(EmpleadoLogisticaB);
+            EmpleadoLogistica_Model empleadoLogisticaB = empleadoLogisticaRepository.findById(id).get();
+            empleadoLogisticaB.setNombre(empleadoLogistica.getNombre());
+            empleadoLogisticaB.setEmail(empleadoLogistica.getEmail());
+            empleadoLogisticaB.setPassword(empleadoLogistica.getPassword());
+            empleadoLogisticaB.setTiendaAsignada(empleadoLogistica.getTiendaAsignada());
+            empleadoLogisticaRepository.save(empleadoLogisticaB);
             return "Empleado de Logistica actualizado con exito";
         }else  {
             return "Empleado de Logistica no encontrado";

@@ -1,9 +1,6 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.EmpleadoDeVentas_Model;
-import com.example.demo.Model.EmpleadoDeVentas_Model;
-
-import com.example.demo.Repository.EmpleadoDeVentas_Repository;
 import com.example.demo.Repository.EmpleadoDeVentas_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +11,8 @@ public class EmpleadoDeVentas_Service {
     @Autowired
     EmpleadoDeVentas_Repository empleadoDeVentas_Repository;
 
-    public String agregar_EmpleadoDeVentas(EmpleadoDeVentas_Model administradorSistema){
-        empleadoDeVentas_Repository.save(administradorSistema);
+    public String agregar_EmpleadoDeVentas(EmpleadoDeVentas_Model empleadoVentas){
+        empleadoDeVentas_Repository.save(empleadoVentas);
         return "Empleado de Ventas agregado con exito";
     }
 
@@ -30,12 +27,12 @@ public class EmpleadoDeVentas_Service {
 
     public String Listar_EmpleadoDeVentas(){
         String Output = "";
-        for(EmpleadoDeVentas_Model empleadoLog : empleadoDeVentas_Repository.findAll()){
-            Output += "Id: "+empleadoLog.getIdEmpleado() + "\n";
-            Output += "Nombre: "+empleadoLog.getNombre() + "\n";
-            Output += "Email: "+empleadoLog.getEmail() + "\n";
-            Output += "Password: "+empleadoLog.getPassword() + "\n";
-            Output += "Tienda: "+empleadoLog.getTienda() + "\n";
+        for(EmpleadoDeVentas_Model empleadoVentas : empleadoDeVentas_Repository.findAll()){
+            Output += "Id: "+empleadoVentas.getIdEmpleado() + "\n";
+            Output += "Nombre: "+empleadoVentas.getNombre() + "\n";
+            Output += "Email: "+empleadoVentas.getEmail() + "\n";
+            Output += "Password: "+empleadoVentas.getPassword() + "\n";
+            Output += "Tienda: "+empleadoVentas.getTienda() + "\n";
         }
         if (Output.isEmpty()){
             return "No hay Empleados de Ventas de Sistema";
@@ -47,12 +44,12 @@ public class EmpleadoDeVentas_Service {
     public String obtener_EmpleadoDeVentasId(int id){
         String Output = "";
         if(empleadoDeVentas_Repository.existsById(id)){
-            EmpleadoDeVentas_Model empleadoLog = empleadoDeVentas_Repository.findById(id).get();
-            Output += "Id: "+empleadoLog.getIdEmpleado() + "\n";
-            Output += "Nombre: "+empleadoLog.getNombre() + "\n";
-            Output += "Email: "+empleadoLog.getEmail() + "\n";
-            Output += "Password: "+empleadoLog.getPassword() + "\n";
-            Output += "Tienda: "+empleadoLog.getTienda() + "\n";
+            EmpleadoDeVentas_Model empleadoVentas = empleadoDeVentas_Repository.findById(id).get();
+            Output += "Id: "+empleadoVentas.getIdEmpleado() + "\n";
+            Output += "Nombre: "+empleadoVentas.getNombre() + "\n";
+            Output += "Email: "+empleadoVentas.getEmail() + "\n";
+            Output += "Password: "+empleadoVentas.getPassword() + "\n";
+            Output += "Tienda: "+empleadoVentas.getTienda() + "\n";
             return Output;
         }else  {
             return "Empleado de Ventas no encontrado";
@@ -61,12 +58,12 @@ public class EmpleadoDeVentas_Service {
 
     public String actualizar_EmpleadoDeVentas(int id, EmpleadoDeVentas_Model EmpleadoDeVentas){
         if(empleadoDeVentas_Repository.existsById(id)){
-            EmpleadoDeVentas_Model EmpleadoDeVentasB = empleadoDeVentas_Repository.findById(id).get();
-            EmpleadoDeVentasB.setNombre(EmpleadoDeVentas.getNombre());
-            EmpleadoDeVentasB.setEmail(EmpleadoDeVentas.getEmail());
-            EmpleadoDeVentasB.setPassword(EmpleadoDeVentas.getPassword());
-            EmpleadoDeVentasB.setTienda(EmpleadoDeVentas.getTienda());
-            empleadoDeVentas_Repository.save(EmpleadoDeVentasB);
+            EmpleadoDeVentas_Model empleadoDeVentasB = empleadoDeVentas_Repository.findById(id).get();
+            empleadoDeVentasB.setNombre(EmpleadoDeVentas.getNombre());
+            empleadoDeVentasB.setEmail(EmpleadoDeVentas.getEmail());
+            empleadoDeVentasB.setPassword(EmpleadoDeVentas.getPassword());
+            empleadoDeVentasB.setTienda(EmpleadoDeVentas.getTienda());
+            empleadoDeVentas_Repository.save(empleadoDeVentasB);
             return "Empleado de Ventas actualizado con exito";
         }else  {
             return "Empleado de Ventas no encontrado";
