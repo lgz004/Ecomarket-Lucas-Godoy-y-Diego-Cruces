@@ -23,7 +23,7 @@ public class EmpleadoDeVentas_Controller {
 
     @GetMapping("/{id}")
     public String getEmpleadoDeVentasById(@PathVariable int id) {
-        return empleadoDeVentasService.obtener_EmpleadoDeVentas(id);
+        return empleadoDeVentasService.obtener_EmpleadoDeVentasId(id);
     }
 
     @DeleteMapping("/{id}")
