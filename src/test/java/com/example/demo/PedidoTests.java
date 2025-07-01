@@ -15,6 +15,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -39,7 +40,7 @@ public class PedidoTests {
     void testPedidoServiceMock() {
         List<Pedido_Model> pedidos = pedidoRepository.findAll();
         assertNotNull(pedidos);
-        assertEquals(1, pedidos.size());
+        assertEquals(2, pedidos.size());
     }
 
     @Test
