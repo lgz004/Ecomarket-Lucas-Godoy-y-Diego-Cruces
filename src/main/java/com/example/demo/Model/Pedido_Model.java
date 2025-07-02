@@ -7,13 +7,14 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
-public class Pedido_Model {
+public class Pedido_Model extends RepresentationModel<Pedido_Model> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,65 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class Usuario_Service {
     @Autowired
     Usuario_Repository usuario_Repository;
 
-    public String agregar_Usuario(Usuario_Model usuario){
+    public void agregar_Usuario(Usuario_Model usuario){
         usuario_Repository.save(usuario);
-        return "Usuario agregado con exito";
     }
 
-    public String eliminar_Usuario(int id){
-        if(usuario_Repository.existsById(id)){
-            usuario_Repository.deleteById(id);
-            return "Usuario eliminado con exito";
-        }else {
-            return "Usuario no encontrado";
-        }
+    public void eliminar_Usuario(int id){
+       usuario_Repository.deleteById(id);
     }
 
-    public String Listar_Usuarios(){
-        String Output = "";
-        for(Usuario_Model usuario : usuario_Repository.findAll()){
-            Output += "Id: "+usuario.getIdUsuario() + "\n";
-            Output += "Nombre: "+usuario.getNombre() + "\n";
-            Output += "Email: "+usuario.getEmail() + "\n";
-            Output += "Password: "+usuario.getPassword() + "\n";
-        }
-        if (Output.isEmpty()){
-            return "No hay usuarios";
-        }else  {
-            return Output;
-        }
+    public List<Usuario_Model> Listar_Usuarios(){
+        return usuario_Repository.findAll();
     }
 
-    public String obtener_Usuario(int id){
-        String Output = "";
-        if(usuario_Repository.existsById(id)){
-            Usuario_Model usuario = usuario_Repository.findById(id).get();
-            Output += "Id: "+usuario.getIdUsuario() + "\n";
-            Output += "Nombre: "+usuario.getNombre() + "\n";
-            Output += "Email: "+usuario.getEmail() + "\n";
-            Output += "Password: "+usuario.getPassword() + "\n";
-            return Output;
-        }else  {
-            return "Usuario no encontrado";
-        }
+    public Optional<Usuario_Model> obtener_Usuario(int id){
+        return usuario_Repository.findById(id);
     }
 
-    public String actualizar_Usuario(int id, Usuario_Model usuario){
-        if(usuario_Repository.existsById(id)){
-            Usuario_Model usuariob = usuario_Repository.findById(id).get();
-            usuariob.setNombre(usuario.getNombre());
-            usuariob.setEmail(usuario.getEmail());
-            usuariob.setPassword(usuario.getPassword());
-            usuario_Repository.save(usuariob);
-            return "Usuario actualizado con exito";
-        }else  {
-            return "Usuario no encontrado";
-        }
+    public void actualizar_Usuario(int id, Usuario_Model usuario){
+        Usuario_Model usuario_actual = usuario_Repository.findById(id).get();
+        usuario_actual.setNombre(usuario.getNombre());
+        usuario_actual.setEmail(usuario.getEmail());
+        usuario_actual.setPassword(usuario.getPassword());
+        usuario_Repository.save(usuario_actual);
     }
 }

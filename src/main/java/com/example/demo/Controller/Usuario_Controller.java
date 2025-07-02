@@ -11,6 +11,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +35,13 @@ public class Usuario_Controller {
             @ApiResponse(responseCode = "200", description = "Retorna lista completa de usuarios"),
             @ApiResponse(responseCode = "404", description = "No se encuentran datos")
     })
-    public String getUsuarios() {
-        return usuario_service.Listar_Usuarios();
+    public ResponseEntity<CollectionModel<EntityModel<Usuario_Model>>> getUsuarios() {
+        List<Usuario_Model> lista = usuario_service.Listar_Usuarios();
+        if (lista.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else  {
+            return new ResponseEntity<>(assembler.toCollectionModel(lista), HttpStatus.OK);
+        }
     }
 
     @PostMapping
@@ -43,8 +52,13 @@ public class Usuario_Controller {
                             schema = @Schema(implementation = Usuario_Model.class))),
             @ApiResponse(responseCode = "204", description = "No hay contenido en la solicitud")
     })
-    public String addUsuario(@RequestBody Usuario_Model usuario) {
-        return usuario_service.agregar_Usuario(usuario);
+    public ResponseEntity<EntityModel<Usuario_Model>> addUsuario(@RequestBody Usuario_Model usuario) {
+        usuario_service.agregar_Usuario(usuario);
+        if (usuario_service.obtener_Usuario(usuario.getIdUsuario()).isPresent()) {
+            return new ResponseEntity<>(assembler.toModel(usuario),HttpStatus.CREATED);
+        } else  {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
     @GetMapping("/{id}")
@@ -54,8 +68,13 @@ public class Usuario_Controller {
             @ApiResponse(responseCode = "404", description = "No se encuentran datos")
     })
     @Parameter(description = "El ID del usuario", example = "123")
-    public String getUsuarioById(@PathVariable int id) {
-        return usuario_service.obtener_Usuario(id);
+    public ResponseEntity<EntityModel<Usuario_Model>> getUsuarioById(@PathVariable int id) {
+        if (usuario_service.obtener_Usuario(id).isPresent()) {
+            Usuario_Model usuario = usuario_service.obtener_Usuario(id).get();
+            return new ResponseEntity<>(assembler.toModel(usuario),HttpStatus.OK);
+        }else  {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -65,8 +84,13 @@ public class Usuario_Controller {
             @ApiResponse(responseCode = "404", description = "No se encuentran datos")
     })
     @Parameter(description = "El ID del usuario", example = "123")
-    public String eliminarUsuario(@PathVariable int id) {
-        return usuario_service.eliminar_Usuario(id);
+    public ResponseEntity<Void> eliminarUsuario(@PathVariable int id) {
+        if (usuario_service.obtener_Usuario(id).isPresent()) {
+            usuario_service.eliminar_Usuario(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else   {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
@@ -77,7 +101,12 @@ public class Usuario_Controller {
                             schema = @Schema(implementation = Usuario_Model.class))),
             @ApiResponse(responseCode = "204", description = "No hay contenido en la solicitud")
     })
-    public String editarUsuario(@PathVariable int id, @RequestBody Usuario_Model usuario) {
-        return usuario_service.actualizar_Usuario(id, usuario);
+    public ResponseEntity<Usuario_Model> editarUsuario(@PathVariable int id, @RequestBody Usuario_Model usuario) {
+        if (usuario_service.obtener_Usuario(id).isPresent()) {
+            usuario_service.actualizar_Usuario(id, usuario);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else   {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
