@@ -1,9 +1,14 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.GerenteTienda_Model;
+import com.example.demo.Model.Pedido_Model;
+import com.example.demo.Model.Usuario_Model;
 import com.example.demo.Repository.GerenteTienda_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GerenteTienda_Service {
@@ -11,62 +16,28 @@ public class GerenteTienda_Service {
     @Autowired
     GerenteTienda_Repository gerenteTienda_Repository;
 
-    public String agregar_Gerente(GerenteTienda_Model gerente){
+    public void agregarGerente(GerenteTienda_Model gerente) {
         gerenteTienda_Repository.save(gerente);
-        return "Gerente agregado con exito";
     }
 
-    public String eliminar_Gerente(int id){
-        if(gerenteTienda_Repository.existsById(id)){
-            gerenteTienda_Repository.deleteById(id);
-            return "Gerente eliminado con exito";
-        }else {
-            return "Gerente no encontrado";
-        }
+    public void eliminarGerente(int id) {
+        gerenteTienda_Repository.deleteById(id);
     }
 
-    public String Listar_Gerentes(){
-        String Output = "";
-        for(GerenteTienda_Model gerente : gerenteTienda_Repository.findAll()){
-            Output += "Id: "+gerente.getIdGerente() + "\n";
-            Output += "Nombre: "+gerente.getNombre() + "\n";
-            Output += "Email: "+gerente.getEmail() + "\n";
-            Output += "Password: "+gerente.getPassword() + "\n";
-            Output += "Tienda: "+gerente.getTiendaAsignada() + "\n";
-        }
-        if (Output.isEmpty()){
-            return "No hay gerentes";
-        }else  {
-            return Output;
-        }
+    public List<GerenteTienda_Model> listarGerentes(){
+        return gerenteTienda_Repository.findAll();
     }
 
-    public String obtener_GerenteId(int id){
-        String Output = "";
-        if(gerenteTienda_Repository.existsById(id)){
-            GerenteTienda_Model gerente = gerenteTienda_Repository.findById(id).get();
-            Output += "Id: "+gerente.getIdGerente() + "\n";
-            Output += "Nombre: "+gerente.getNombre() + "\n";
-            Output += "Email: "+gerente.getEmail() + "\n";
-            Output += "Password: "+gerente.getPassword() + "\n";
-            Output += "Tienda: "+gerente.getTiendaAsignada() + "\n";
-            return Output;
-        }else  {
-            return "Gerente no encontrado";
-        }
+    public Optional<GerenteTienda_Model> obtenerGerente(int id){
+        return gerenteTienda_Repository.findById(id);
     }
 
-    public String actualizar_Gerente(int id, GerenteTienda_Model gerente){
-        if(gerenteTienda_Repository.existsById(id)){
-            GerenteTienda_Model gerenteb = gerenteTienda_Repository.findById(id).get();
-            gerenteb.setNombre(gerente.getNombre());
-            gerenteb.setEmail(gerente.getEmail());
-            gerenteb.setPassword(gerente.getPassword());
-            gerenteb.setTiendaAsignada(gerente.getTiendaAsignada());
-            gerenteTienda_Repository.save(gerenteb);
-            return "Gerente actualizado con exito";
-        }else  {
-            return "Gerente no encontrado";
-        }
+    public void actualizarGerente(int id, GerenteTienda_Model gerente){
+        GerenteTienda_Model gerente_actual = gerenteTienda_Repository.findById(id).get();
+        gerente_actual.setNombre(gerente.getNombre());
+        gerente_actual.setEmail(gerente.getEmail());
+        gerente_actual.setPassword(gerente.getPassword());
+        gerente_actual.setTiendaAsignada(gerente.getTiendaAsignada());
+        gerenteTienda_Repository.save(gerente_actual);
     }
 }
