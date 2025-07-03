@@ -16,7 +16,7 @@ public class GerenteTiendaModelAssembler implements RepresentationModelAssembler
         return EntityModel.of(GerenteTienda,
                 linkTo(methodOn(GerenteTienda_Controller.class).getGerenteById(GerenteTienda.getIdGerente())).withSelfRel(),
                 linkTo(methodOn(GerenteTienda_Controller.class).getGerentes()).withRel("gerentes"),
-                linkTo(methodOn(GerenteTienda_Controller.class).editGerente(GerenteTienda.getIdGerente(), GerenteTienda)).withRel("PUT"),
+                linkTo(methodOn(GerenteTienda_Controller.class).updateGerente(GerenteTienda.getIdGerente(), GerenteTienda)).withRel("PUT"),
                 linkTo(methodOn(GerenteTienda_Controller.class).deleteGerente(GerenteTienda.getIdGerente())).withRel("DELETE")
         );
     }
