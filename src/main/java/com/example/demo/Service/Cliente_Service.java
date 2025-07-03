@@ -1,9 +1,14 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.Cliente_Model;
+import com.example.demo.Model.Pedido_Model;
+import com.example.demo.Model.Usuario_Model;
 import com.example.demo.Repository.Cliente_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class Cliente_Service {
@@ -11,62 +16,28 @@ public class Cliente_Service {
     @Autowired
     Cliente_Repository cliente_Repository;
 
-    public String agregar_Cliente(Cliente_Model cliente) {
+    public void agregarCliente(Cliente_Model cliente) {
         cliente_Repository.save(cliente);
-        return "Cliente agregado con exito";
     }
 
-    public String eliminar_Cliente(int id){
-        if(cliente_Repository.existsById(id)){
-            cliente_Repository.deleteById(id);
-            return "Cliente eliminado con exito";
-        }else {
-            return "Cliente no encontrado";
-        }
+    public void eliminarCliente(int id) {
+        cliente_Repository.deleteById(id);
     }
 
-    public String Listar_Clientes(){
-        String Output = "";
-        for(Cliente_Model cliente : cliente_Repository.findAll()){
-            Output += "Id: "+cliente.getIdCliente() + "\n";
-            Output += "Nombre: "+cliente.getNombre() + "\n";
-            Output += "Email: "+cliente.getEmail() + "\n";
-            Output += "Password: "+cliente.getPassword() + "\n";
-            Output += "Dirección: "+cliente.getDireccionEnvio() + "\n";
-        }
-        if (Output.isEmpty()){
-            return "No hay Clientes";
-        }else  {
-            return Output;
-        }
+    public List<Cliente_Model> listarClientes(){
+        return cliente_Repository.findAll();
     }
 
-    public String obtener_ClienteId(int id){
-        String Output = "";
-        if(cliente_Repository.existsById(id)){
-            Cliente_Model cliente = cliente_Repository.findById(id).get();
-            Output += "Id: "+cliente.getIdCliente() + "\n";
-            Output += "Nombre: "+cliente.getNombre() + "\n";
-            Output += "Email: "+cliente.getEmail() + "\n";
-            Output += "Password: "+cliente.getPassword() + "\n";
-            Output += "Direccion: "+cliente.getDireccionEnvio() + "\n";
-            return Output;
-        }else  {
-            return "Cliente no encontrado";
-        }
+    public Optional<Cliente_Model> obtenerCliente(int id){
+        return cliente_Repository.findById(id);
     }
 
-    public String actualizar_Cliente(int id, Cliente_Model cliente){
-        if(cliente_Repository.existsById(id)){
-            Cliente_Model clienteb = cliente_Repository.findById(id).get();
-            clienteb.setNombre(cliente.getNombre());
-            clienteb.setEmail(cliente.getEmail());
-            clienteb.setPassword(cliente.getPassword());
-            clienteb.setDireccionEnvio(cliente.getDireccionEnvio());
-            cliente_Repository.save(clienteb);
-            return "Cliente actualizado con exito";
-        }else  {
-            return "Cliente no encontrado";
-        }
+    public void actualizarCliente(int id, Cliente_Model cliente){
+        Cliente_Model cliente_actual = cliente_Repository.findById(id).get();
+        cliente_actual.setNombre(cliente.getNombre());
+        cliente_actual.setEmail(cliente.getEmail());
+        cliente_actual.setPassword(cliente.getPassword());
+        cliente_actual.setDireccionEnvio(cliente.getDireccionEnvio());
+        cliente_Repository.save(cliente_actual);
     }
 }
