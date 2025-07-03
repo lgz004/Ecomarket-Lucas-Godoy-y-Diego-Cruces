@@ -5,67 +5,36 @@ import com.example.demo.Repository.AdministradorSistema_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AdministradorSistema_Service {
     @Autowired
     AdministradorSistema_Repository administradorSistemaRepository;
 
-    public String agregar_AdministradorSistema(AdministradorSistema_Model administradorSistema){
+    public void agregar_AdministradorSistema(AdministradorSistema_Model administradorSistema) {
         administradorSistemaRepository.save(administradorSistema);
-        return "Administrador de Sistema agregado con exito";
     }
 
-    public String eliminar_AdministradorSistema(int id){
-        if(administradorSistemaRepository.existsById(id)){
-            administradorSistemaRepository.deleteById(id);
-            return "Administrador de Sistema eliminado con exito";
-        }else {
-            return "Administrador de sistema no encontrado";
-        }
+    public void eliminar_AdministradorSistema(int id) {
+        administradorSistemaRepository.deleteById(id);
     }
 
-    public String Listar_AdministradorSistema(){
-        String Output = "";
-        for(AdministradorSistema_Model adminSistema : administradorSistemaRepository.findAll()){
-            Output += "Id: "+adminSistema.getIdAdmin() + "\n";
-            Output += "Nombre: "+adminSistema.getNombre() + "\n";
-            Output += "Email: "+adminSistema.getEmail() + "\n";
-            Output += "Password: "+adminSistema.getPassword() + "\n";
-            Output += "Tienda: "+adminSistema.getTienda() + "\n";
-        }
-        if (Output.isEmpty()){
-            return "No hay Administradores de Sistema";
-        }else  {
-            return Output;
-        }
+    public List<AdministradorSistema_Model> Listar_AdministradorSistema() {
+        return administradorSistemaRepository.findAll();
     }
 
-    public String obtener_AdministradorSistemaId(int id){
-        String Output = "";
-        if(administradorSistemaRepository.existsById(id)){
-            AdministradorSistema_Model adminSistema = administradorSistemaRepository.findById(id).get();
-            Output += "Id: "+adminSistema.getIdAdmin() + "\n";
-            Output += "Nombre: "+adminSistema.getNombre() + "\n";
-            Output += "Email: "+adminSistema.getEmail() + "\n";
-            Output += "Password: "+adminSistema.getPassword() + "\n";
-            Output += "Tienda: "+adminSistema.getTienda() + "\n";
-            return Output;
-        }else  {
-            return "Administrador de Sistema no encontrado";
-        }
+    public Optional<AdministradorSistema_Model> obtener_AdministradorSistemaId(int id) {
+        return administradorSistemaRepository.findById(id);
     }
 
-    public String actualizar_AdministradorSistema(int id, AdministradorSistema_Model administradorSistema){
-        if(administradorSistemaRepository.existsById(id)){
-            AdministradorSistema_Model administradorSistemaB = administradorSistemaRepository.findById(id).get();
-            administradorSistemaB.setNombre(administradorSistema.getNombre());
-            administradorSistemaB.setEmail(administradorSistema.getEmail());
-            administradorSistemaB.setPassword(administradorSistema.getPassword());
-            administradorSistemaB.setTienda(administradorSistema.getTienda());
-            administradorSistemaRepository.save(administradorSistemaB);
-            return "Administrador de Sistema actualizado con exito";
-        }else  {
-            return "Administrador de Sistema no encontrado";
-        }
+    public void actualizar_AdministradorSistema(int id, AdministradorSistema_Model administradorSistema) {
+        AdministradorSistema_Model administradorSistema_actual = administradorSistemaRepository.findById(id).get();
+        administradorSistema_actual.setNombre(administradorSistema.getNombre());
+        administradorSistema_actual.setEmail(administradorSistema.getEmail());
+        administradorSistema_actual.setPassword(administradorSistema.getPassword());
+        administradorSistema_actual.setTienda(administradorSistema.getTienda());
+        administradorSistemaRepository.save(administradorSistema_actual);
     }
 }
