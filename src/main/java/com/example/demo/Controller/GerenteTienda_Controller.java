@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/gerentes")
+@Tag(name = "Controller GerenteTienda", description = "Servicio gestion de gerentes de tiendas Ecomarket")
 public class GerenteTienda_Controller {
 
     @Autowired
