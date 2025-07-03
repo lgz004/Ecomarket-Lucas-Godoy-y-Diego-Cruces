@@ -62,7 +62,7 @@ public class Usuario_Controller {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar usuario por ID", description = "Obtiene un usuario segu el ID registrado en el sistema")
+    @Operation(summary = "Buscar usuario por ID", description = "Obtiene un usuario segun el ID registrado en el sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Retorna usuario"),
             @ApiResponse(responseCode = "404", description = "No se encuentran datos")
@@ -101,6 +101,7 @@ public class Usuario_Controller {
                             schema = @Schema(implementation = Usuario_Model.class))),
             @ApiResponse(responseCode = "204", description = "No hay contenido en la solicitud")
     })
+    @Parameter(description = "El ID del usuario", example = "123")
     public ResponseEntity<Usuario_Model> editarUsuario(@PathVariable int id, @RequestBody Usuario_Model usuario) {
         if (usuario_service.obtener_Usuario(id).isPresent()) {
             usuario_service.actualizar_Usuario(id, usuario);

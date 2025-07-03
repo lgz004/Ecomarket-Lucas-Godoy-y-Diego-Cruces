@@ -5,68 +5,37 @@ import com.example.demo.Repository.EmpleadoLogistica_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EmpleadoLogistica_Service {
 
     @Autowired
     EmpleadoLogistica_Repository empleadoLogisticaRepository;
 
-    public String agregar_EmpleadoLogistica(EmpleadoLogistica_Model empleadoLogistica){
+    public void agregar_EmpleadoLogistica(EmpleadoLogistica_Model empleadoLogistica){
         empleadoLogisticaRepository.save(empleadoLogistica);
-        return "Empleado de Logistica agregado con exito";
     }
 
-    public String eliminar_EmpleadoLogistica(int id){
-        if(empleadoLogisticaRepository.existsById(id)){
-            empleadoLogisticaRepository.deleteById(id);
-            return "Empleado de Logistica eliminado con exito";
-        }else {
-            return "Empleado de Logistica no encontrado";
-        }
+    public void eliminar_EmpleadoLogistica(int id){
+        empleadoLogisticaRepository.deleteById(id);
     }
 
-    public String Listar_EmpleadoLogistica(){
-        String Output = "";
-        for(EmpleadoLogistica_Model empleadoLog : empleadoLogisticaRepository.findAll()){
-            Output += "Id: "+empleadoLog.getIdLogistica() + "\n";
-            Output += "Nombre: "+empleadoLog.getNombre() + "\n";
-            Output += "Email: "+empleadoLog.getEmail() + "\n";
-            Output += "Password: "+empleadoLog.getPassword() + "\n";
-            Output += "Tienda: "+empleadoLog.getTiendaAsignada() + "\n";
-        }
-        if (Output.isEmpty()){
-            return "No hay empleados de Logistica";
-        }else  {
-            return Output;
-        }
+    public List<EmpleadoLogistica_Model> Listar_EmpleadoLogistica(){
+        return empleadoLogisticaRepository.findAll();
     }
 
-    public String obtener_EmpleadoLogisticaId(int id){
-        String Output = "";
-        if(empleadoLogisticaRepository.existsById(id)){
-            EmpleadoLogistica_Model empleadoLog = empleadoLogisticaRepository.findById(id).get();
-            Output += "Id: "+empleadoLog.getIdLogistica() + "\n";
-            Output += "Nombre: "+empleadoLog.getNombre() + "\n";
-            Output += "Email: "+empleadoLog.getEmail() + "\n";
-            Output += "Password: "+empleadoLog.getPassword() + "\n";
-            Output += "Tienda: "+empleadoLog.getTiendaAsignada() + "\n";
-            return Output;
-        }else  {
-            return "Empleado de Logistica no encontrado";
-        }
+    public Optional<EmpleadoLogistica_Model> obtener_EmpleadoLogisticaId(int id){
+        return empleadoLogisticaRepository.findById(id);
     }
 
-    public String actualizar_EmpleadoLogistica(int id, EmpleadoLogistica_Model empleadoLogistica){
-        if(empleadoLogisticaRepository.existsById(id)){
-            EmpleadoLogistica_Model empleadoLogisticaB = empleadoLogisticaRepository.findById(id).get();
-            empleadoLogisticaB.setNombre(empleadoLogistica.getNombre());
-            empleadoLogisticaB.setEmail(empleadoLogistica.getEmail());
-            empleadoLogisticaB.setPassword(empleadoLogistica.getPassword());
-            empleadoLogisticaB.setTiendaAsignada(empleadoLogistica.getTiendaAsignada());
-            empleadoLogisticaRepository.save(empleadoLogisticaB);
-            return "Empleado de Logistica actualizado con exito";
-        }else  {
-            return "Empleado de Logistica no encontrado";
-        }
+    public void actualizar_EmpleadoLogistica(int id, EmpleadoLogistica_Model empleadoLogistica) {
+        EmpleadoLogistica_Model empleadoLogistica_actual = empleadoLogisticaRepository.findById(id).get();
+        empleadoLogistica_actual.setNombre(empleadoLogistica.getNombre());
+        empleadoLogistica_actual.setEmail(empleadoLogistica.getEmail());
+        empleadoLogistica_actual.setPassword(empleadoLogistica.getPassword());
+        empleadoLogistica_actual.setTiendaAsignada(empleadoLogistica.getTiendaAsignada());
+        empleadoLogisticaRepository.save(empleadoLogistica_actual);
     }
 }
