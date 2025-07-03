@@ -79,18 +79,16 @@ public class PedidoTests {
     @Test
     @DisplayName("Eliminar pedido existente")
     void testDeletePedidoById() {
-        // Preparación del pedido existente
+
         Pedido_Model pedido = new Pedido_Model();
-        pedido.setIdPedido(1);  // Asegurate de tener el metodo setId si lo necesitas
+        pedido.setIdPedido(1);
         when(pedidoRepository.findById(1)).thenReturn(Optional.of(pedido));
 
-        // Simulación: obtengo el pedido y lo elimino
         Optional<Pedido_Model> result = pedidoRepository.findById(1);
         assertTrue(result.isPresent());
 
         pedidoRepository.deleteById(1);
 
-        // Verificación: deleteById fue llamado correctamente
         verify(pedidoRepository, times(1)).deleteById(1);
     }
 
