@@ -2,7 +2,6 @@ package com.example.demo.Controller;
 
 import com.example.demo.Assembler.EmpleadoLogisticaModelAssembler;
 import com.example.demo.Model.EmpleadoLogistica_Model;
-import com.example.demo.Model.Usuario_Model;
 import com.example.demo.Service.EmpleadoLogistica_Service;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -51,7 +50,7 @@ public class EmpleadoLogistica_Controller {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Empleado de logistica creado",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Usuario_Model.class))),
+                            schema = @Schema(implementation = EmpleadoLogistica_Model.class))),
             @ApiResponse(responseCode = "204", description = "No hay contenido en la solicitud")
     })
     public ResponseEntity<EntityModel<EmpleadoLogistica_Model>> addEmpleadoLogistica(@RequestBody EmpleadoLogistica_Model empleadoLogistica){
@@ -100,7 +99,7 @@ public class EmpleadoLogistica_Controller {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Empleado de logistica modificado",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Usuario_Model.class))),
+                            schema = @Schema(implementation = EmpleadoLogistica_Model.class))),
             @ApiResponse(responseCode = "204", description = "No hay contenido en la solicitud")
     })
     @Parameter(description = "El ID del empleado de logistica", example = "123")
