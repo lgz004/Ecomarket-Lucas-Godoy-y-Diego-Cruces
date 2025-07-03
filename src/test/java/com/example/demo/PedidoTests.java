@@ -51,7 +51,7 @@ public class PedidoTests {
     }
 
     @Test
-    @DisplayName("Rectificar precio producto")
+    @DisplayName("Rectificar precio pedido")
     void testFindPedido(){
         Pedido_Model test = new Pedido_Model();
         test.setTotalPedido(400.0);
